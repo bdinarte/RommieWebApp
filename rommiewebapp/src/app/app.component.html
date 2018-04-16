@@ -1,5 +1,8 @@
-<h1>{{title}}</h1>
 
-<app-info-general></app-info-general>
+<div (click)="displayed_component='chat'">Mostrar chat</div>
+<div (click)="displayed_component='cronograma'">Mostrar cronograma</div>
+
+<app-chat *ngIf="displayed_component=='chat'"></app-chat>
+<app-cronograma *ngIf="displayed_component=='cronograma'"></app-cronograma>
 
 

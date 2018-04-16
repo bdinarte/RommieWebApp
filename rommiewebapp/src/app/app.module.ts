@@ -8,11 +8,15 @@ import { InfoGeneralComponent } from './info-general/info-general.component';
 import { AngularFireModule } from 'angularfire2';
 import {environment} from "../environments/environment";
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { CronogramaComponent } from './cronograma/cronograma.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InfoGeneralComponent
+    InfoGeneralComponent,
+    CronogramaComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
