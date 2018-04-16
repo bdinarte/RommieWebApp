@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-info-general',
@@ -9,12 +11,13 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
 export class InfoGeneralComponent implements OnInit {
 
-  constructor() {
+  info: Observable<any>;
 
+  constructor(db: AngularFireDatabase) {
+    this.info = db.object('edepa5/congress').valueChanges();
   }
 
   ngOnInit() {
 
   }
-
 }
