@@ -1,8 +1,53 @@
 
-<div (click)="displayed_component='chat'">Mostrar chat</div>
-<div (click)="displayed_component='cronograma'">Mostrar cronograma</div>
+<div class="row">
+  <!-- Menú lateral -->
+  <div class="col-md-2">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 col-centered">
+      <img src="assets/images/userdefault.png" class="img-responsive img-rounded">
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='info-general'" (click)="displaying='info-general'">
+        General
+      </div>
+    </div>
+    <div class="row">
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='cronograma'" (click)="displaying='cronograma'">
+        Cronograma
+      </div>
+    </div>
+    <div class="row">
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='expositores'" (click)="displaying='expositores'">
+        Expositores
+      </div>
+    </div>
+    <div class="row">
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='chat'" (click)="displaying='chat'">
+        Chat
+      </div>
+    </div>
+    <div class="row">
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='noticias'" (click)="displaying='noticias'">
+        Noticias
+      </div>
+    </div>
+    <div class="row">
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='configuracion'" (click)="displaying='configuracion'">
+        Configuración
+      </div>
+    </div>
+  </div>
 
-<app-chat *ngIf="displayed_component=='chat'"></app-chat>
-<app-cronograma *ngIf="displayed_component=='cronograma'"></app-cronograma>
+  <!-- Contenidos del menú -->
+  <div id="tabs-container" class="col-md-10">
+    <app-info-general *ngIf="displaying=='info-general'"></app-info-general>
+    <app-chat *ngIf="displaying=='chat'"></app-chat>
+    <app-cronograma *ngIf="displaying=='cronograma'"></app-cronograma>
+  </div>
+</div>
+
 
 

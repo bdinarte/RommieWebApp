@@ -9,6 +9,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Rommie';
 
-  displayed_component: string = 'info-general';
+  displaying: string = 'info-general';
 
 }
