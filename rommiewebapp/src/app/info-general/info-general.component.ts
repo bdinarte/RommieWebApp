@@ -11,13 +11,29 @@ import { Observable } from 'rxjs/Observable';
 
 export class InfoGeneralComponent implements OnInit {
 
-  info: Observable<any>;
+  info_display: Observable<any>;
+  database: any;
 
   constructor(db: AngularFireDatabase) {
-    this.info = db.object('edepa5/congress').valueChanges();
+    this.info_display = db.object('edepa5/congress').valueChanges();
+    this.database = db;
   }
 
-  ngOnInit() {
+  ngOnInit() {  }
 
+  update_name(name: string){
+    this.database.object('edepa5/congress/name').set(name);
+  }
+
+  update_end(end: number){}
+
+  update_start(start: number){}
+
+  update_description(description: string){
+    this.database.object('edepa5/congress/description').set(description);
+  }
+
+  ff(){
+    return 'brondon';
   }
 }
