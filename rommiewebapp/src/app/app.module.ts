@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { InfoGeneralComponent } from './info-general/info-general.component';
 
 import { AngularFireModule } from 'angularfire2';
-import {environment} from "../environments/environment";
+import { environment } from "../environments/environment";
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { CronogramaComponent } from './cronograma/cronograma.component';
 import { ChatComponent } from './chat/chat.component';
 
@@ -22,7 +23,8 @@ import { ChatComponent } from './chat/chat.component';
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'Rommie'),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,37 +1,47 @@
 
 <div class="row">
   <!-- Menú lateral -->
-  <div class="col-xs-2">
-    <div class="row">
-      <div class="col-xs-2"></div>
-      <div class="col-xs-8 col-centered">
+  <div id="sidebar" class="col-xs-2">
+
+    <div class="row gradient">
+      <div class="col-xs-12 col-centered">
       <img src="assets/images/userdefault.png" class="img-responsive img-rounded">
       </div>
-      <div class="col-xs-2"></div>
     </div>
+
     <div class="row">
       <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='info-general'" (click)="displaying='info-general'">
         General
       </div>
     </div>
+
     <div class="row">
       <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='cronograma'" (click)="displaying='cronograma'">
         Cronograma
       </div>
     </div>
+
     <div class="row">
       <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='chat'" (click)="displaying='chat'">
         Chat
       </div>
     </div>
+
     <div class="row">
       <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='noticias'" (click)="displaying='noticias'">
         Noticias
       </div>
     </div>
+
     <div class="row">
       <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='configuracion'" (click)="displaying='configuracion'">
         Configuración
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-centered">
+        <img src="assets/images/userdefault.png" class="img-responsive">
       </div>
     </div>
   </div>
