@@ -11,15 +11,19 @@ export class UploadService {
 
   constructor(private storage: AngularFireStorage) { }
 
-  uploadImage(event: FileList) {
+  uploadImage(event: FileList): boolean {
 
-    const file = event.item(0);
+    try {
+      const file = event.item(0);
 
-    const path = 'edepa_map.png';
+      const path = 'edepa_map.png';
 
-    this.task = this.storage.upload(path, file);
-    this.snapshot = this.task.snapshotChanges();
-
+      this.task = this.storage.upload(path, file);
+      this.snapshot = this.task.snapshotChanges();
+    }
+    catch(e) {
+      return false;
+    }
   }
 
   isActive(snapshot){

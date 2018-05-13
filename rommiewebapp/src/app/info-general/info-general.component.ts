@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { InfoGeneralService } from './info-general.service';
 import { UploadService} from "../uploads/upload.service";
+import { ModalAvisoComponent } from "../modal-aviso/modal-aviso.component"
 
 @Component({
   selector: 'app-info-general',
@@ -15,6 +16,7 @@ export class InfoGeneralComponent implements OnInit {
 
   info_display: Observable<any>;
   private selectedFiles: FileList;
+  @ViewChild(ModalAvisoComponent) modal: ModalAvisoComponent;
 
   constructor(private infoService: InfoGeneralService, private uploadService: UploadService) {}
 
@@ -28,14 +30,22 @@ export class InfoGeneralComponent implements OnInit {
     if (event.target.files.length > 0) {
       this.selectedFiles = event.target.files;
       if (this.selectedFiles.item(0).type.split('/')[0] !== 'image') {
-        // TODO: show error
+        this.show_error_modal();
         this.selectedFiles = null;
       }
     }
   }
 
-  uploadImage(){
-      this.uploadService.uploadImage(this.selectedFiles);
+  upload_image(){
+    if (this.selectedFiles) {
+      let upload_success = this.uploadService.uploadImage(this.selectedFiles);
+      if (upload_success) {
+        this.show_success_modal()
+      }
+      else {
+        this.show_error_modal()
+      }
+    }
   }
 
   update_name(name: string){ this.infoService.set_name(name); }
@@ -47,5 +57,15 @@ export class InfoGeneralComponent implements OnInit {
   update_end(end: number){}
 
   update_start(start: number){}
+
+  show_success_modal(){
+    this.modal.open_modal();
+    this.modal.set_message('Imagen guardada con éxito.');
+  }
+
+  show_error_modal() {
+    this.modal.open_modal();
+    this.modal.set_message('No se elegió un archivo válido como imagen.');
+  }
 
 }
