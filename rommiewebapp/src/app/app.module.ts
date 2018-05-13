@@ -11,13 +11,15 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { CronogramaComponent } from './cronograma/cronograma.component';
 import { ChatComponent } from './chat/chat.component';
+import { ModalAvisoComponent } from './modal-aviso/modal-aviso.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InfoGeneralComponent,
     CronogramaComponent,
-    ChatComponent
+    ChatComponent,
+    ModalAvisoComponent
   ],
   imports: [
     BrowserModule,
