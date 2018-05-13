@@ -7,12 +7,27 @@ h2 {
   font-size: 16px;
 }
 
-label {
-  margin-top: 5px;
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.btn-std {
+  width: 150px;
+  background: #E51937;
+  color: #FFFFFF;
+}
+.btn-std.focus, .btn-std:focus, .btn-std:hover {
+  color: #212121;
+}
+.btn-menu.active, .btn-menu:active {
+  background: #A01126;
 }
 
 textarea{
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   resize: none;
 }
 
