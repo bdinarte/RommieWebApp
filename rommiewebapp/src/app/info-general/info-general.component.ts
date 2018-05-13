@@ -27,10 +27,17 @@ export class InfoGeneralComponent implements OnInit {
 
   fileChange(event){
     this.selectedFiles = event.target.files;
+    if (this.selectedFiles.item(0).type.split('/')[0] !== 'image') {
+      // TODO: show error
+      this.selectedFiles = null;
+      console.log('no imagen');
+    } else {
+      console.log('si imagen');
+    }
   }
 
   uploadImage(){
-      this.uploadService.upload_map(new Upload(this.selectedFiles.item(0)));
+      this.uploadService.uploadImage(this.selectedFiles);
   }
 
   update_name(name: string){ this.infoService.set_name(name); }

@@ -1,25 +1,29 @@
 
 import { Injectable } from '@angular/core';
-import { Upload } from "./upload";
-import * as firebase from 'firebase'
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
+import { Observable } from 'rxjs/Observable'
 
 @Injectable()
 export class UploadService {
 
-  constructor() { }
+  task: AngularFireUploadTask;
+  snapshot: Observable<any>;
 
-  upload_map(upload: Upload) {
-    let storageReference = firebase.storage().ref();
-    let uploadTask = storageReference.child('edepa_map.png').put(upload.file);
+  constructor(private storage: AngularFireStorage) { }
 
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => { },
-      (error) => { console.log(error)},
-      () => {
-      // TODO: insertar acción de éxito
-      }
-      );
+  uploadImage(event: FileList) {
 
+    const file = event.item(0);
+
+    const path = 'edepa_map.png';
+
+    this.task = this.storage.upload(path, file);
+    this.snapshot = this.task.snapshotChanges();
+
+  }
+
+  isActive(snapshot){
+    return snapshot.state == 'running';
   }
 
 }
