@@ -25,13 +25,12 @@ export class InfoGeneralComponent implements OnInit {
   }
 
   fileChange(event){
-    this.selectedFiles = event.target.files;
-    if (this.selectedFiles.item(0).type.split('/')[0] !== 'image') {
-      // TODO: show error
-      this.selectedFiles = null;
-      console.log('no imagen');
-    } else {
-      console.log('si imagen');
+    if (event.target.files.length > 0) {
+      this.selectedFiles = event.target.files;
+      if (this.selectedFiles.item(0).type.split('/')[0] !== 'image') {
+        // TODO: show error
+        this.selectedFiles = null;
+      }
     }
   }
 
