@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { InfoGeneralService } from './info-general.service';
 import { UploadService} from "../uploads/upload.service";
-import { Upload } from "../uploads/upload";
 
 @Component({
   selector: 'app-info-general',
