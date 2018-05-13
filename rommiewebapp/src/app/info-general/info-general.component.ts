@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { InfoGeneralService } from './info-general.service';
+import { UploadService} from "../uploads/upload.service";
+import { Upload } from "../uploads/upload";
 
 @Component({
   selector: 'app-info-general',
+  providers: [InfoGeneralService, UploadService],
   templateUrl: './info-general.component.html',
   styleUrls: ['./info-general.component.css']
 })
@@ -12,28 +15,32 @@ import { Observable } from 'rxjs/Observable';
 export class InfoGeneralComponent implements OnInit {
 
   info_display: Observable<any>;
-  database: any;
+  private selectedFiles: FileList;
 
-  constructor(db: AngularFireDatabase) {
-    this.info_display = db.object('edepa5/congress').valueChanges();
-    this.database = db;
+  constructor(private infoService: InfoGeneralService, private uploadService: UploadService) {}
+
+  ngOnInit() { this.get_info_display(); }
+
+  get_info_display(): void {
+    this.info_display = this.infoService.get_info_display();
   }
 
-  ngOnInit() {  }
-
-  update_name(name: string){
-    this.database.object('edepa5/congress/name').set(name);
+  fileChange(event){
+    this.selectedFiles = event.target.files;
   }
+
+  uploadImage(){
+      this.uploadService.upload_map(new Upload(this.selectedFiles.item(0)));
+  }
+
+  update_name(name: string){ this.infoService.set_name(name); }
+
+  update_description(description: string){ this.infoService.set_description(description); }
+
+  update_location(location: string) { this.infoService.set_location(location); }
 
   update_end(end: number){}
 
   update_start(start: number){}
 
-  update_description(description: string){
-    this.database.object('edepa5/congress/description').set(description);
-  }
-
-  ff(){
-    return 'brondon';
-  }
 }
