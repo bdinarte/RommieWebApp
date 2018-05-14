@@ -13,8 +13,8 @@ export class ModalAvisoComponent implements OnInit {
   }
 
   display = 'none';
-  private header = '¡Aviso!';
-  private message = 'Vacío.';
+  header = '¡Aviso!';
+  message = 'Vacío.';
 
   open_modal() {
     this.display='block';

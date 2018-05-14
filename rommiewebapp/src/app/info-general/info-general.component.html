@@ -21,13 +21,13 @@
           <div class="row"><label>Desde el </label></div>
         </div>
         <div class="col-xs-4">
-          <input [ngModel]="(info_display | async)?.start" />
+          <input class="small-input" [ngModel]="double_to_date((info_display | async)?.start)" />
         </div>
         <div class="col-xs-1">
           <div class="row"><label>hasta el</label></div>
         </div>
         <div class="col-xs-4">
-          <input [ngModel]="(info_display | async)?.end" />
+          <input class="small-input" [ngModel]="double_to_date((info_display | async)?.end)" />
         </div>
       </div>
 
@@ -56,30 +56,34 @@
           <div class="row"><h2>Coordenadas</h2></div>
           <div class="row">
             <div class="col-xs-2">
-              <div class="row">Latitud</div>
+              <div class="row"><label>Latitud</label></div>
             </div>
             <div class="cols-xs-10">
-              <input />
+              <input class="small-input"
+                     [ngModel]="(info_display | async)?.xCoord"
+                     placeholder="Ejemplo: -0.8355"/>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="margin-top: 5px;">
             <div class="col-xs-2">
-              <div class="row">Longitud</div>
+              <div class="row"><label>Longitud</label></div>
             </div>
             <div class="cols-xs-10">
-              <input />
+              <input class="small-input"
+                     [ngModel]="(info_display | async)?.yCoord"
+                     placeholder="Ejemplo: -0.8355"/>
             </div>
           </div>
           <div class="row"> <div class="col-xs-10"> <hr> </div> </div>
           <div class="row"><h2>Cargar imagen de mapa</h2></div>
           <div class="row">
-            <div class="col-xs-8 vcenter">
-              <input type="file" (change)="fileChange($event)"/>
+            <div class="col-xs-4 vcenter">
+              <label class="btn btn-danger btn-std">
+                Seleccionar imagen <input type="file" (change)="fileChange($event)" style="display: none;">
+              </label>
             </div>
-          </div>
-          <div class="row">
-            <div class="cols-xs-8 vcenter">
-              <button type="button" class="btn btn-danger btn-std" style="margin: 15px;"
+            <div class="cols-xs-4 vcenter">
+              <button type="button" class="btn btn-danger btn-std" style="margin-top: 3px;"
                       [disabled]="!selectedFiles"
                       (click)="upload_image()">
                 Guardar

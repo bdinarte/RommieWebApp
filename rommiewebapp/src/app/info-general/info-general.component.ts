@@ -15,7 +15,7 @@ import { ModalAvisoComponent } from "../modal-aviso/modal-aviso.component"
 export class InfoGeneralComponent implements OnInit {
 
   info_display: Observable<any>;
-  private selectedFiles: FileList;
+  selectedFiles: FileList;
   @ViewChild(ModalAvisoComponent) modal: ModalAvisoComponent;
 
   constructor(private infoService: InfoGeneralService, private uploadService: UploadService) {}
@@ -29,21 +29,23 @@ export class InfoGeneralComponent implements OnInit {
   fileChange(event){
     if (event.target.files.length > 0) {
       this.selectedFiles = event.target.files;
-      if (this.selectedFiles.item(0).type.split('/')[0] !== 'image') {
-        this.show_error_modal();
-        this.selectedFiles = null;
-      }
+      this.show_modal('Archivo seleccionado: ' + this.selectedFiles.item(0).name);
     }
   }
 
   upload_image(){
-    if (this.selectedFiles) {
-      let upload_success = this.uploadService.uploadImage(this.selectedFiles);
-      if (upload_success) {
-        this.show_success_modal()
-      }
-      else {
-        this.show_error_modal()
+    if (this.selectedFiles.length > 0) {
+      if (this.selectedFiles.item(0).type.split('/')[0] !== 'image') {
+        this.show_modal('La extensión del archivo no se reconoce como imagen.');
+        this.selectedFiles = null;
+      } else {
+        let upload_success = this.uploadService.uploadImage(this.selectedFiles);
+        if (upload_success) {
+          this.show_modal('Imagen guardada con éxito.')
+        }
+        else {
+          this.show_modal('Error al guardar la imagen.')
+        }
       }
     }
   }
@@ -58,14 +60,13 @@ export class InfoGeneralComponent implements OnInit {
 
   update_start(start: number){}
 
-  show_success_modal(){
+  show_modal(message){
     this.modal.open_modal();
-    this.modal.set_message('Imagen guardada con éxito.');
+    this.modal.set_message(message);
   }
 
-  show_error_modal() {
-    this.modal.open_modal();
-    this.modal.set_message('No se elegió un archivo válido como imagen.');
+  double_to_date(_value) {
+    let _date = new Date(_value);
+    return _date.toLocaleString();
   }
-
 }

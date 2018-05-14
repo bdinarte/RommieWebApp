@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+
+html, body{
+  background: #fcfcfc;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+label {
+  margin-top: 5px;
+  font-weight: 400 !important;
+}
+
+.btn-std {
+  width: 150px;
+  background: #E51937;
+  color: #FFFFFF;
+  overflow-x: hidden;
+}
+.btn-std.focus, .btn-std:focus, .btn-std:hover {
+  color: #212121;
+}
+.btn-menu.active, .btn-menu:active {
+  background: #A01126;
+}
+
+textarea{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  resize: none;
+}

@@ -20,14 +20,12 @@ export class UploadService {
 
       this.task = this.storage.upload(path, file);
       this.snapshot = this.task.snapshotChanges();
+
+      return true;
     }
     catch(e) {
       return false;
     }
-  }
-
-  isActive(snapshot){
-    return snapshot.state == 'running';
   }
 
 }

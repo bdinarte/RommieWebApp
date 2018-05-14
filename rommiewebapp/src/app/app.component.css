@@ -1,8 +1,4 @@
 
-body {
-  margin: 2em;
-}
-
 img {
   width: 75%;
   margin: 10px auto;
@@ -64,6 +60,7 @@ img {
 }
 
 #sidebar {
+  box-shadow: 3px 0px 12px #aaaaaa;
   position: fixed;
   display: block;
   z-index: 1;
@@ -71,6 +68,6 @@ img {
 
 #tabs-container {
   margin-top: 30px;
-  margin-left: 17%;
+  margin-left: 18%;
   margin-bottom: 50px;
 }
