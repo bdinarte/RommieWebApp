@@ -20,9 +20,13 @@ export class InfoGeneralService {
     this.database.object('edepa5/congress/name').set(name);
   }
 
-  set_end(end: number){}
+  set_end(end: number){
+    this.database.object('edepa5/congress/end').set(end);
+  }
 
-  set_start(start: number){}
+  set_start(start: number){
+    this.database.object('edepa5/congress/start').set(start);
+  }
 
   set_description(description: string){
     this.database.object('edepa5/congress/description').set(description);

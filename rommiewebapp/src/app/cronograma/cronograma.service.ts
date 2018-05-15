@@ -1,8 +1,45 @@
 import { Injectable } from '@angular/core';
 
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+
+import { ScheduleEvent } from "./modal-nuevo-evento/ScheduleEvent";
+
 @Injectable()
 export class CronogramaService {
 
-  constructor() { }
+  constructor(db: AngularFireDatabase) {
+    this.event_list = db.list('edepa5/schedule').valueChanges();
+    this.database = db;
+  }
+
+  private event_list: Observable<any[]>;
+  private database: any;
+
+  get_event_list() : Observable<any[]>{
+    return this.event_list;
+  }
+
+  delete_event(evnt){
+    try {
+      console.log(evnt);
+      this.database.list('edepa5/schedule/' + evnt).remove();
+      return true;
+    }
+    catch(e) {
+      console.log(e);
+      return false;
+    }
+  }
+
+  save_new_event(new_event: ScheduleEvent) : boolean {
+    try {
+      this.database.list('edepa5/schedule').push(new_event);
+      return true;
+    }
+    catch(e) {
+      return false;
+    }
+  }
 
 }

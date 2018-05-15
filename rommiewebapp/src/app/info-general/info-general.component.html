@@ -8,12 +8,12 @@
 
       <div class="row">
         <h1>Nombre del congreso</h1>
-        <input class="_input" [ngModel]="(info_display | async)?.name"
+        <input class="_input form-control" [ngModel]="(info_display | async)?.name"
                (ngModelChange)="update_name($event)"
                placeholder="Escribir un nombre para el congreso"/>
       </div>
 
-      <div class="row"> <div class="col-xs-11"> <hr> </div> </div>
+      <div class="row"> <hr> </div>
 
       <div class="row">
         <h2>Fecha</h2>
@@ -21,30 +21,34 @@
           <div class="row"><label>Desde el </label></div>
         </div>
         <div class="col-xs-4">
-          <input class="small-input" [ngModel]="double_to_date((info_display | async)?.start)" />
+          <input type="datetime-local" class="small-input form-control"
+                 [ngModel]="double_to_date((info_display | async)?.start) | date:'yyyy-MM-ddTHH:mm'"
+                 (ngModelChange)="update_start($event)" />
         </div>
         <div class="col-xs-1">
           <div class="row"><label>hasta el</label></div>
         </div>
         <div class="col-xs-4">
-          <input class="small-input" [ngModel]="double_to_date((info_display | async)?.end)" />
+          <input type="datetime-local" class="small-input form-control"
+                 [ngModel]="double_to_date((info_display | async)?.end) | date:'yyyy-MM-ddTHH:mm'"
+                 (ngModelChange)="update_end($event)"/>
         </div>
       </div>
 
-      <div class="row"> <div class="col-xs-11"> <hr> </div> </div>
+      <div class="row"> <hr> </div>
 
       <div class="row">
         <h2>Descripción</h2>
-        <textarea rows="3" class="_input" [ngModel]="(info_display | async)?.description"
+        <textarea rows="3" class="_input form-control" [ngModel]="(info_display | async)?.description"
                   (ngModelChange)="update_description($event)"
                   placeholder="Escribir una descripción para el congreso"></textarea>
       </div>
 
-      <div class="row"> <div class="col-xs-11"> <hr> </div> </div>
+      <div class="row"> <hr> </div>
 
       <div class="row">
         <h1>Ubicación</h1>
-        <input class="_input" [ngModel]="(info_display | async)?.location"
+        <input class="_input form-control" [ngModel]="(info_display | async)?.location"
                (ngModelChange)="update_location($event)"
                placeholder="Escribir una localización textual para el congreso"/>
       </div>
@@ -59,7 +63,7 @@
               <div class="row"><label>Latitud</label></div>
             </div>
             <div class="cols-xs-10">
-              <input class="small-input"
+              <input class="small-input form-control"
                      [ngModel]="(info_display | async)?.xCoord"
                      placeholder="Ejemplo: -0.8355"/>
             </div>
@@ -69,7 +73,7 @@
               <div class="row"><label>Longitud</label></div>
             </div>
             <div class="cols-xs-10">
-              <input class="small-input"
+              <input class="small-input form-control"
                      [ngModel]="(info_display | async)?.yCoord"
                      placeholder="Ejemplo: -0.8355"/>
             </div>

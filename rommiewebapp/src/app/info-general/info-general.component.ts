@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { InfoGeneralService } from './info-general.service';
-import { UploadService} from "../uploads/upload.service";
+import { UploadService } from "../uploads/upload.service";
 import { ModalAvisoComponent } from "../modal-aviso/modal-aviso.component"
 
 @Component({
@@ -56,9 +56,15 @@ export class InfoGeneralComponent implements OnInit {
 
   update_location(location: string) { this.infoService.set_location(location); }
 
-  update_end(end: number){}
+  update_end(end){
+    let enddate: any = new Date(end);
+    this.infoService.set_end(enddate*1)
+  }
 
-  update_start(start: number){}
+  update_start(start){
+    let startdate: any = new Date(start);
+    this.infoService.set_start(startdate*1)
+  }
 
   show_modal(message){
     this.modal.open_modal();
@@ -66,7 +72,6 @@ export class InfoGeneralComponent implements OnInit {
   }
 
   double_to_date(_value) {
-    let _date = new Date(_value);
-    return _date.toLocaleString();
+    return new Date(_value);
   }
 }
