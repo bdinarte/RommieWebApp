@@ -63,9 +63,10 @@
               <div class="row"><label>Latitud</label></div>
             </div>
             <div class="cols-xs-10">
-              <input class="small-input form-control"
-                     [ngModel]="(info_display | async)?.xCoord"
-                     placeholder="Ejemplo: -0.8355"/>
+              <input type="number" class="small-input form-control"
+                     [ngModel]="(info_display | async)?.yCoord"
+                     (ngModelChange)="update_y($event)"
+                     placeholder="Ejemplo: 9.856355"/>
             </div>
           </div>
           <div class="row" style="margin-top: 5px;">
@@ -73,9 +74,10 @@
               <div class="row"><label>Longitud</label></div>
             </div>
             <div class="cols-xs-10">
-              <input class="small-input form-control"
-                     [ngModel]="(info_display | async)?.yCoord"
-                     placeholder="Ejemplo: -0.8355"/>
+              <input type="number" class="small-input form-control"
+                     [ngModel]="(info_display | async)?.xCoord"
+                     (ngModelChange)="update_x($event)" [required]="true"
+                     placeholder="Ejemplo: -84.912864"/>
             </div>
           </div>
           <div class="row"> <div class="col-xs-10"> <hr> </div> </div>
@@ -100,4 +102,3 @@
     </div>
   </div>
 </div>
-

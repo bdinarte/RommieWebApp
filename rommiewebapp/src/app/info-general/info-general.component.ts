@@ -56,6 +56,10 @@ export class InfoGeneralComponent implements OnInit {
 
   update_location(location: string) { this.infoService.set_location(location); }
 
+  update_x(coord: number) { this.infoService.set_x(coord); }
+
+  update_y(coord: number) { this.infoService.set_y(coord); }
+
   update_end(end){
     let enddate: any = new Date(end);
     this.infoService.set_end(enddate*1)

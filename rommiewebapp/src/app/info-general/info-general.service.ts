@@ -35,4 +35,12 @@ export class InfoGeneralService {
   set_location(location: string){
     this.database.object('edepa5/congress/location').set(location);
   }
+
+  set_x(xCoord: number){
+    this.database.object('edepa5/congress/xCoord').set(xCoord);
+  }
+
+  set_y(yCoord: number){
+    this.database.object('edepa5/congress/yCoord').set(yCoord);
+  }
 }
