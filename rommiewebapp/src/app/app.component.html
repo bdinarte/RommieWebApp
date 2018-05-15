@@ -23,14 +23,15 @@
     </div>
 
     <div class="row">
-      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='chat'" (click)="displaying='chat'">
-        Chat
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='noticias'" (click)="displaying='noticias'">
+        Noticias
       </div>
     </div>
 
+<!--
     <div class="row">
-      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='noticias'" (click)="displaying='noticias'">
-        Noticias
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='chat'" (click)="displaying='chat'">
+        Chat
       </div>
     </div>
 
@@ -39,7 +40,7 @@
         Configuración
       </div>
     </div>
-
+-->
     <div class="row">
       <div class="col-xs-12 col-centered">
         <img src="assets/images/logo_edepa.svg" class="img-responsive">
@@ -50,10 +51,9 @@
   <!-- Contenidos del menú -->
   <div id="tabs-container" class="col-xs-10">
       <app-info-general *ngIf="displaying=='info-general'"></app-info-general>
-      <app-chat *ngIf="displaying=='chat'"></app-chat>
+      <app-noticias *ngIf="displaying=='noticias'"></app-noticias>
       <app-cronograma *ngIf="displaying=='cronograma'"></app-cronograma>
   </div>
 </div>
-
 
 
