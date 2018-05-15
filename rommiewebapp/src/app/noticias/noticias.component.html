@@ -1,0 +1,45 @@
+
+<div class="container">
+
+  <app-modal-aviso></app-modal-aviso>
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <div class="row">
+        <h2>Agregar noticia:</h2>
+        <div class="col-xs-9">
+          <div class="row">
+            <textarea rows="3" class="_input form-control"
+                      [(ngModel)]="new_article_content"
+                      placeholder="Escribir una nueva noticia por publicar."></textarea>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <div class="row">
+            <button class="btn btn-danger btn-std" (click)="add_new_article()">Publicar noticia</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row"> <hr> </div>
+
+      <div class="row">
+        <h2>Noticias publicadas</h2>
+        <div class="col-xs-12">
+          <ul class="list-group list-group-extra">
+            <li class="list-group-item list-group-item-extra" *ngFor="let article of news_list | async">
+              <div><strong> {{ double_to_date(article.time) }}</strong></div>
+              <div class="list-item-title"> {{ article.content }} </div>
+              <span class="badge badge-extra" (click)="remove_article(article.key)">
+                <a style="color:white;" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
