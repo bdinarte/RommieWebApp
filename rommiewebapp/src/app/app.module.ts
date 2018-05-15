@@ -12,6 +12,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { CronogramaComponent } from './cronograma/cronograma.component';
 import { ChatComponent } from './chat/chat.component';
 import { ModalAvisoComponent } from './modal-aviso/modal-aviso.component';
+import { ModalNuevoEventoComponent } from './cronograma/modal-nuevo-evento/modal-nuevo-evento.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ModalAvisoComponent } from './modal-aviso/modal-aviso.component';
     InfoGeneralComponent,
     CronogramaComponent,
     ChatComponent,
-    ModalAvisoComponent
+    ModalAvisoComponent,
+    ModalNuevoEventoComponent
   ],
   imports: [
     BrowserModule,

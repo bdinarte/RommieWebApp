@@ -1,0 +1,94 @@
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content" >
+      <div class="modal-header">
+        <button type="button" class="close" (click)="close_modal()">&times;</button>
+        <h4 class="modal-title">Registrar nuevo evento:</h4>
+      </div>
+      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-xs-4" for="title">Título:</label>
+            <div class="col-xs-8">
+              <input type="text" class="form-control" id="title" placeholder="Escribir título del evento" name="title"
+                     [ngModel]="scheduleEvent.title" (ngModelChange)="set_title($event)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-4" for="_id">Identificador:</label>
+            <div class="col-xs-8">
+              <input type="text" class="form-control" id="_id" placeholder="Escribir código identificador" name="_id"
+                     [ngModel]="scheduleEvent.id" (ngModelChange)="set_id($event)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-4" for="briefenglish">Resumen (Inglés):</label>
+            <div class="col-xs-8">
+              <input type="text" class="form-control" id="briefenglish" placeholder="Escribir resumen en inglés" name="briefenglish"
+                     [ngModel]="scheduleEvent.briefEnglish" (ngModelChange)="set_briefEnglish($event)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-4" for="briefspanish">Resumen (Español):</label>
+            <div class="col-xs-8">
+              <input type="text" class="form-control" id="briefspanish" placeholder="Escribir resumen en español" name="briefspanish"
+                     [ngModel]="scheduleEvent.briefSpanish" (ngModelChange)="set_briefSpanish($event)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-4" for="location">Ubicación:</label>
+            <div class="col-xs-8">
+              <input type="text" class="form-control" id="location" placeholder="Escribir ubicación del evento" name="location"
+                     [ngModel]="scheduleEvent.location" (ngModelChange)="set_location($event)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-4" for="location">Tipo de evento:</label>
+            <div class="col-xs-8">
+              <div class="dropdown">
+                <button class="btn btn-danger btn-std dropdown-toggle" type="button"
+                        data-toggle="dropdown"> {{ scheduleEvent.get_eventype() | titlecase }}
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li (click)="set_eventype('CONFERENCIA')"><a href="#">Conferencia</a></li>
+                  <li (click)="set_eventype('PONENCIA')"><a href="#">Ponencia</a></li>
+                  <li (click)="set_eventype('TALLER')"><a href="#">Taller</a></li>
+                  <li (click)="set_eventype('FERIA_EDEPA')"><a href="#">Feria EDEPA</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-4" for="location">Inicio del evento:</label>
+            <div class="col-xs-8">
+              <input type="datetime-local" id="start" name="start" class="form-control"
+                     [ngModel]="double_to_date(scheduleEvent.start) | date:'yyyy-MM-ddTHH:mm'"
+                     (ngModelChange)="set_start($event)" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-4" for="location">Final del evento:</label>
+            <div class="col-xs-8">
+              <input type="datetime-local" id="end" name="end" class="form-control"
+                     [ngModel]="double_to_date(scheduleEvent.end) | date:'yyyy-MM-ddTHH:mm'"
+                     (ngModelChange)="set_end($event)" >
+            </div>
+          </div>
+          <div *ngIf="display_alert" class="alert alert-danger">
+            <strong>¡Importante!</strong> Debe completarse toda la información con datos válidos.
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger btn-std" (click)="save_event()"> Aceptar </button>
+        <button type="button" class="btn btn-danger btn-std" (click)="close_modal()"> Cerrar </button>
+      </div>
+    </div>
+
+  </div>
+</div>
