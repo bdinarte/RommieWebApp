@@ -1,7 +1,7 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalNuevoEventoComponent } from "./modal-nuevo-evento/modal-nuevo-evento.component";
-import { ScheduleEvent } from "./modal-nuevo-evento/ScheduleEvent";
+import { ScheduleEvent } from "./ScheduleEvent";
 import { CronogramaService } from "./cronograma.service";
 import { ModalAvisoComponent } from "../modal-aviso/modal-aviso.component";
 import { Observable } from 'rxjs/Observable';

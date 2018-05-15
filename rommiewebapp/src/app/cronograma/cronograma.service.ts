@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
-import { ScheduleEvent } from "./modal-nuevo-evento/ScheduleEvent";
+import { ScheduleEvent } from "./ScheduleEvent";
 
 @Injectable()
 export class CronogramaService {
@@ -39,6 +39,7 @@ export class CronogramaService {
   save_new_event(new_event: ScheduleEvent) : boolean {
     try {
       this.database.list('edepa5/schedule').push(new_event);
+      this.database.list('edepa5/ongoing').push(new_event);
       return true;
     }
     catch(e) {

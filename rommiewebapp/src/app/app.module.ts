@@ -13,6 +13,7 @@ import { CronogramaComponent } from './cronograma/cronograma.component';
 import { ChatComponent } from './chat/chat.component';
 import { ModalAvisoComponent } from './modal-aviso/modal-aviso.component';
 import { ModalNuevoEventoComponent } from './cronograma/modal-nuevo-evento/modal-nuevo-evento.component';
+import { NoticiasComponent } from './noticias/noticias.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ModalNuevoEventoComponent } from './cronograma/modal-nuevo-evento/modal
     CronogramaComponent,
     ChatComponent,
     ModalAvisoComponent,
-    ModalNuevoEventoComponent
+    ModalNuevoEventoComponent,
+    NoticiasComponent
   ],
   imports: [
     BrowserModule,

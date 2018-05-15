@@ -1,6 +1,6 @@
 
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { ScheduleEvent } from "./ScheduleEvent";
+import { ScheduleEvent } from "../ScheduleEvent";
 
 @Component({
   selector: 'app-modal-nuevo-evento',
