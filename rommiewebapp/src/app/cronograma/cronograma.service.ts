@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 import { ScheduleEvent } from "./modal-nuevo-evento/ScheduleEvent";
@@ -8,26 +8,30 @@ import { ScheduleEvent } from "./modal-nuevo-evento/ScheduleEvent";
 @Injectable()
 export class CronogramaService {
 
+  eventsRef: AngularFireList<any>;
+  private event_list: Observable<any[]>;
+
   constructor(db: AngularFireDatabase) {
-    this.event_list = db.list('edepa5/schedule').valueChanges();
+    this.eventsRef = db.list('edepa5/schedule');
+    this.event_list = this.eventsRef.snapshotChanges().pipe().
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      );
     this.database = db;
   }
 
-  private event_list: Observable<any[]>;
   private database: any;
 
   get_event_list() : Observable<any[]>{
     return this.event_list;
   }
 
-  delete_event(evnt){
+  delete_event(_key){
     try {
-      console.log(evnt);
-      this.database.list('edepa5/schedule/' + evnt).remove();
+      this.database.list('edepa5/schedule/' + _key).remove();
       return true;
     }
     catch(e) {
-      console.log(e);
       return false;
     }
   }
