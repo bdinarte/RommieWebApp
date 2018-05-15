@@ -7,8 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'Rommie';
 
-  displaying: string = 'info-general';
+  displaying: string = 'cronograma';
 
 }
