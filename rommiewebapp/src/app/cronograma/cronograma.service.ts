@@ -36,9 +36,9 @@ export class CronogramaService {
     }
   }
 
-  edit_event(updated_object){
+  edit_event(_key, updated_object){
     try {
-      this.database.list('edepa5/schedule/').update(updated_object);
+      this.database.list('edepa5/schedule/').update(_key, updated_object);
       return true;
     }
     catch(e) {

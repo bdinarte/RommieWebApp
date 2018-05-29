@@ -46,7 +46,7 @@ export class CronogramaComponent implements OnInit {
       save_success = this.cronogramaService.save_new_event(new_event);
     }
     else {
-      save_success = this.cronogramaService.edit_event(new_event);
+      save_success = this.cronogramaService.edit_event(this.selected_event, new_event);
     }
     if (save_success) {
       this.show_modal_info('Evento guardado exitosamente.')
