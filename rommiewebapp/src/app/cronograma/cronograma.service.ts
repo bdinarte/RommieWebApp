@@ -36,6 +36,16 @@ export class CronogramaService {
     }
   }
 
+  edit_event(updated_object){
+    try {
+      this.database.list('edepa5/schedule/').update(updated_object);
+      return true;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
   save_new_event(new_event: ScheduleEvent) : boolean {
     try {
       this.database.list('edepa5/schedule').push(new_event);

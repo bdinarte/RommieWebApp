@@ -26,6 +26,8 @@ export class CronogramaComponent implements OnInit {
   event_list: Observable<any[]>;
   filtered_events: Observable<any[]>;
 
+  new_or_edit = 'new';
+
   selected_event: string;
 
   ngOnInit() {
@@ -39,7 +41,13 @@ export class CronogramaComponent implements OnInit {
   }
 
   onNotify(new_event: ScheduleEvent){
-    let save_success = this.cronogramaService.save_new_event(new_event);
+    let save_success = false;
+    if (this.new_or_edit == "new") {
+      save_success = this.cronogramaService.save_new_event(new_event);
+    }
+    else {
+      save_success = this.cronogramaService.edit_event(new_event);
+    }
     if (save_success) {
       this.show_modal_info('Evento guardado exitosamente.')
     }
@@ -70,6 +78,7 @@ export class CronogramaComponent implements OnInit {
   }
 
   show_event_modal(){
+    this.new_or_edit = "new";
     this.modal_event.open_modal();
   }
 
@@ -97,8 +106,10 @@ export class CronogramaComponent implements OnInit {
     }
   }
 
-  edit_event(evnt){
-
+  show_edit_modal(event_object){
+    this.new_or_edit = "edit";
+    this.modal_event.open_modal();
+    this.modal_event.set_ScheduleEvent(event_object);
   }
 
   double_to_date(_value) {

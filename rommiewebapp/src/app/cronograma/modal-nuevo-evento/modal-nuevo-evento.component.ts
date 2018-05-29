@@ -18,6 +18,17 @@ export class ModalNuevoEventoComponent implements OnInit {
     this.scheduleEvent = new ScheduleEvent();
   }
 
+  set_ScheduleEvent(schedule_object){
+    this.set_title(schedule_object.title);
+    this.set_eventype(schedule_object.eventype);
+    this.set_briefEnglish(schedule_object.briefEnglish);
+    this.set_briefSpanish(schedule_object.briefSpanish);
+    this.set_end(schedule_object.end);
+    this.set_start(schedule_object.start);
+    this.set_id(schedule_object.id);
+    this.set_location(schedule_object.location);
+  }
+
   display_alert = false;
 
   save_event(){
@@ -83,6 +94,7 @@ export class ModalNuevoEventoComponent implements OnInit {
   open_modal() {
     this.scheduleEvent = new ScheduleEvent();
     this.display='block';
+    this.display_alert = false;
   }
 
   close_modal(){
