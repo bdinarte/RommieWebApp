@@ -62,13 +62,11 @@ export class CronogramaComponent implements OnInit {
       this.filtered_events = this.event_list;
     }
     else {
-      this.filtered_events = this.filter_by_title();
+      this.filtered_events = this.filtered_events.map(events => events.filter(
+        evnt => (evnt.title.toLowerCase()).includes(this.filter_string.toLowerCase())
+                          || (evnt.eventype.toLowerCase()).includes(this.filter_string.toLowerCase())
+                          ));
     }
-  }
-
-  filter_by_title() {
-    return this.filtered_events.map(events => events.filter(
-      evnt => (evnt.title.toLowerCase()).includes(this.filter_string.toLowerCase())));
   }
 
   show_event_modal(){
