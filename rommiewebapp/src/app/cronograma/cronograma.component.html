@@ -3,6 +3,7 @@
 
   <app-modal-aviso></app-modal-aviso>
   <app-modal-nuevo-evento (notify)="onNotify($event)"></app-modal-nuevo-evento>
+  <app-modal-confirmacion (notify)="process_confirmation($event)"></app-modal-confirmacion>
 
   <div class="row">
     <div class="col-xs-12">
@@ -27,14 +28,25 @@
         <h2>Eventos disponibles</h2>
         <div class="col-xs-12">
           <ul class="list-group list-group-extra">
-            <li class="list-group-item list-group-item-extra" *ngFor="let _event of event_list | async">
-              <div class="list-item-title"> {{ _event.title }} </div>
-              <span class="badge badge-extra" (click)="remove_event(_event.key)">
+            <li class="list-group-item list-group-item-extra" *ngFor="let _event of event_list | async"
+                (click)="selected_event=_event.key">
+              <div class="list-item-title" > {{ _event.title }} </div>
+              <span class="badge badge-extra" (click)="show_elimination_modal(_event.key)">
                 <a style="color:white;" href="#"><span class="glyphicon glyphicon-remove"></span></a>
               </span>
               <span class="badge badge-extra" (click)="edit_event(_event)">
                 <a style="color:white;" href="#"><span class="glyphicon glyphicon-edit"></span></a>
               </span>
+              <div class="col-xs-12" *ngIf="selected_event==_event.key">
+                <div class="row"><hr></div>
+                <div class="row"><strong>ID: </strong>{{ _event.id }}</div>
+                <div class="row"><strong>Tipo de evento: </strong>{{ _event.eventype }}</div>
+                <div class="row"><strong>Inicio: </strong>{{ double_to_date(_event.start) }}</div>
+                <div class="row"><strong>Fin: </strong>{{ double_to_date(_event.end) }}</div>
+                <div class="row"><strong>Resumen: </strong>{{ _event.briefSpanish }}</div>
+                <div class="row"><strong>Resumen (Inglés): </strong>{{ _event.briefEnglish }}</div>
+                <div class="row"><strong>Ubicación: </strong>{{ _event.location }}</div>
+              </div>
             </li>
           </ul>
         </div>

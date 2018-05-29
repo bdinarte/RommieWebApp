@@ -4,6 +4,7 @@ import { ModalAvisoComponent } from "../modal-aviso/modal-aviso.component";
 import { NewsArticle } from "./NewsArticle";
 import { NoticiasService } from "./noticias.service";
 import { Observable } from 'rxjs/Observable'
+import {ModalConfirmacionComponent} from "../modal-confirmacion/modal-confirmacion.component";
 
 @Component({
   selector: 'app-noticias',
@@ -14,6 +15,7 @@ import { Observable } from 'rxjs/Observable'
 export class NoticiasComponent implements OnInit {
 
   @ViewChild(ModalAvisoComponent) modal_info: ModalAvisoComponent;
+  @ViewChild(ModalConfirmacionComponent) modal_confirm: ModalConfirmacionComponent;
 
   constructor(private noticiasService: NoticiasService) { }
 
@@ -31,6 +33,24 @@ export class NoticiasComponent implements OnInit {
   show_modal_info(message){
     this.modal_info.open_modal();
     this.modal_info.set_message(message);
+  }
+
+  key_to_erase: string;
+
+  process_confirmation(response: Boolean){
+    if (response){
+      this.remove_article(this.key_to_erase);
+    }
+    else {
+      this.key_to_erase = "";
+    }
+  }
+
+  show_elimination_modal(event_key){
+    this.key_to_erase = event_key;
+    this.modal_confirm.open_modal();
+    this.modal_confirm.set_header("Confirmación de acción:")
+    this.modal_confirm.set_message("¿Desea continuar con la eliminación de esta noticia?");
   }
 
   remove_article(_key){

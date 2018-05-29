@@ -5,6 +5,7 @@ import { ScheduleEvent } from "./ScheduleEvent";
 import { CronogramaService } from "./cronograma.service";
 import { ModalAvisoComponent } from "../modal-aviso/modal-aviso.component";
 import { Observable } from 'rxjs/Observable';
+import { ModalConfirmacionComponent } from "../modal-confirmacion/modal-confirmacion.component";
 
 @Component({
   selector: 'app-cronograma',
@@ -16,10 +17,14 @@ export class CronogramaComponent implements OnInit {
 
   @ViewChild(ModalNuevoEventoComponent) modal_event: ModalNuevoEventoComponent;
   @ViewChild(ModalAvisoComponent) modal_info: ModalAvisoComponent;
+  @ViewChild(ModalConfirmacionComponent) modal_confirm: ModalConfirmacionComponent;
 
   constructor(private cronogramaService: CronogramaService) { }
 
   event_list: Observable<any[]>;
+  filtered_events: Observable<any[]>;
+
+  selected_event: string;
 
   ngOnInit() { this.get_event_list() }
 
@@ -37,6 +42,24 @@ export class CronogramaComponent implements OnInit {
     }
   }
 
+  process_confirmation(response: Boolean){
+    if (response){
+      this.remove_event(this.key_to_erase);
+    }
+    else {
+      this.key_to_erase = "";
+    }
+  }
+
+  filter_events(){
+
+  }
+
+  filter_by_title(title) {
+   // return this.projects
+    //  .map(projects => projects.filter(proj => proj.name === name));
+  }
+
   show_event_modal(){
     this.modal_event.open_modal();
   }
@@ -46,8 +69,17 @@ export class CronogramaComponent implements OnInit {
     this.modal_info.set_message(message);
   }
 
-  remove_event(evnt){
-    let delete_success = this.cronogramaService.delete_event(evnt);
+  key_to_erase: string;
+
+  show_elimination_modal(event_key){
+    this.key_to_erase = event_key;
+    this.modal_confirm.open_modal();
+    this.modal_confirm.set_header("Confirmación de acción:")
+    this.modal_confirm.set_message("¿Desea continuar con la eliminación del evento?");
+  }
+
+  remove_event(event_key){
+    let delete_success = this.cronogramaService.delete_event(event_key);
     if (delete_success) {
       this.show_modal_info('Evento eliminado.')
     }
@@ -58,5 +90,9 @@ export class CronogramaComponent implements OnInit {
 
   edit_event(evnt){
 
+  }
+
+  double_to_date(_value) {
+    return (new Date(_value)).toLocaleString();
   }
 }

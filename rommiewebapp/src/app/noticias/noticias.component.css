@@ -13,10 +13,6 @@
   background: hsla(0, 0%, 96%, 0.99);
 }
 
-.badge-extra {
-  background: hsla(351, 80%, 50%, 0.7);
-}
-
 .list-item-title{
   width: 80%;
   overflow-x: hidden;

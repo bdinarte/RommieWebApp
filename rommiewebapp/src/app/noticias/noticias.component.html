@@ -2,6 +2,7 @@
 <div class="container">
 
   <app-modal-aviso></app-modal-aviso>
+  <app-modal-confirmacion (notify)="process_confirmation($event)"></app-modal-confirmacion>
 
   <div class="row">
     <div class="col-xs-12">
@@ -31,7 +32,7 @@
             <li class="list-group-item list-group-item-extra" *ngFor="let article of news_list | async">
               <div><strong> {{ double_to_date(article.time) }}</strong></div>
               <div class="list-item-title"> {{ article.content }} </div>
-              <span class="badge badge-extra" (click)="remove_article(article.key)">
+              <span class="badge badge-extra" (click)="show_elimination_modal(article.key)">
                 <a style="color:white;" href="#"><span class="glyphicon glyphicon-remove"></span></a>
               </span>
             </li>
