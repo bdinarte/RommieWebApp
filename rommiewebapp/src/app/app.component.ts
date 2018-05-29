@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-  displaying: string = 'info-general';
+  displaying: string = 'cronograma';
 
 }

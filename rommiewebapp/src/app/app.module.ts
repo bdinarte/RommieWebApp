@@ -14,6 +14,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ModalAvisoComponent } from './modal-aviso/modal-aviso.component';
 import { ModalNuevoEventoComponent } from './cronograma/modal-nuevo-evento/modal-nuevo-evento.component';
 import { NoticiasComponent } from './noticias/noticias.component';
+import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NoticiasComponent } from './noticias/noticias.component';
     ChatComponent,
     ModalAvisoComponent,
     ModalNuevoEventoComponent,
-    NoticiasComponent
+    NoticiasComponent,
+    ModalConfirmacionComponent
   ],
   imports: [
     BrowserModule,
