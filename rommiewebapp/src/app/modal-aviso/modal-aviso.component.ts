@@ -7,10 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalAvisoComponent implements OnInit {
 
-  tipo_evento = 'Conferencia';
-
   constructor() {
-    this.tipo_evento = 'Conferencia';
   }
 
   ngOnInit() {
