@@ -10,12 +10,17 @@
 
       <div class="row">
         <h2>Buscar eventos</h2>
-        <div class="col-xs-9">
+        <div class="col-xs-7">
           <div class="row">
-            <input class="_input form-control"/>
+            <input [(ngModel)]="filter_string" class="_input form-control"/>
           </div>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
+          <div class="row">
+            <button class="btn btn-danger btn-std" (click)="filter_events()">Filtrar</button>
+          </div>
+        </div>
+        <div class="col-xs-2">
           <div class="row">
             <button class="btn btn-danger btn-std" (click)="show_event_modal()">Nuevo evento</button>
           </div>
@@ -28,7 +33,7 @@
         <h2>Eventos disponibles</h2>
         <div class="col-xs-12">
           <ul class="list-group list-group-extra">
-            <li class="list-group-item list-group-item-extra" *ngFor="let _event of event_list | async"
+            <li class="list-group-item list-group-item-extra" *ngFor="let _event of filtered_events | async"
                 (click)="selected_event=_event.key">
               <div class="list-item-title" > {{ _event.title }} </div>
               <span class="badge badge-extra" (click)="show_elimination_modal(_event.key)">

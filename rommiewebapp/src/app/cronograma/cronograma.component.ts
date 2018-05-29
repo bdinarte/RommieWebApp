@@ -21,12 +21,18 @@ export class CronogramaComponent implements OnInit {
 
   constructor(private cronogramaService: CronogramaService) { }
 
+  filter_string: string;
+
   event_list: Observable<any[]>;
   filtered_events: Observable<any[]>;
 
   selected_event: string;
 
-  ngOnInit() { this.get_event_list() }
+  ngOnInit() {
+    this.get_event_list();
+    this.filter_string = "";
+    this.filtered_events = this.event_list;
+  }
 
   get_event_list(): void {
     this.event_list = this.cronogramaService.get_event_list();
@@ -52,12 +58,17 @@ export class CronogramaComponent implements OnInit {
   }
 
   filter_events(){
-
+    if (this.filter_string == ""){
+      this.filtered_events = this.event_list;
+    }
+    else {
+      this.filtered_events = this.filter_by_title();
+    }
   }
 
-  filter_by_title(title) {
-   // return this.projects
-    //  .map(projects => projects.filter(proj => proj.name === name));
+  filter_by_title() {
+    return this.filtered_events.map(events => events.filter(
+      evnt => (evnt.title.toLowerCase()).includes(this.filter_string.toLowerCase())));
   }
 
   show_event_modal(){
