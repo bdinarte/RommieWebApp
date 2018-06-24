@@ -19,7 +19,6 @@ export class UploadService {
       this.snapshot = this.storage.ref(path).delete();
     }
     catch (e) {
-      console.log(e);
       this.snapshot = null;
     }
 
