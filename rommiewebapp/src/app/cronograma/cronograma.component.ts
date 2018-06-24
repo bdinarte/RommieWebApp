@@ -38,7 +38,7 @@ export class CronogramaComponent implements OnInit {
 
   event_selection(event_key: string){
     if (this.selected_event == event_key){
-      this.selected_event = -1;
+      this.selected_event = "-1";
     }
     else {
       this.selected_event = event_key;
