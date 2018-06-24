@@ -13,10 +13,18 @@ export class UploadService {
 
   uploadImage(event: FileList): boolean {
 
+    const path = 'edepa_map.png';
+
+    try {
+      this.snapshot = this.storage.ref(path).delete();
+    }
+    catch (e) {
+      console.log(e);
+      this.snapshot = null;
+    }
+
     try {
       const file = event.item(0);
-
-      const path = 'edepa_map.png';
 
       this.task = this.storage.upload(path, file);
       this.snapshot = this.task.snapshotChanges();
