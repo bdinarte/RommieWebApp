@@ -12,7 +12,9 @@
         <h2>Buscar eventos</h2>
         <div class="col-xs-7">
           <div class="row">
-            <input [(ngModel)]="filter_string" class="_input form-control"/>
+            <input [(ngModel)]="filter_string"
+                   (keyup.enter)="filter_events()"
+                   class="_input form-control"/>
           </div>
         </div>
         <div class="col-xs-2">
