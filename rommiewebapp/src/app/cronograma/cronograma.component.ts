@@ -36,6 +36,15 @@ export class CronogramaComponent implements OnInit {
     this.filtered_events = this.event_list;
   }
 
+  event_selection(event_key: string){
+    if (this.selected_event == event_key){
+      this.selected_event = -1;
+    }
+    else {
+      this.selected_event = event_key;
+    }
+  }
+
   get_event_list(): void {
     this.event_list = this.cronogramaService.get_event_list();
   }
