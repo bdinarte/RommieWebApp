@@ -43,14 +43,14 @@ export class ModalNuevoEventoComponent implements OnInit {
 
   invalid_fields(){
     let schEv = this.scheduleEvent;
-    if (schEv.get_briefEnglish() == "") return true;
-    if (schEv.get_briefSpanish() == "") return true;
-    if (schEv.get_eventype() == "") return true;
-    if (schEv.get_id() == "") return true;
-    if (schEv.get_location() == "") return true;
-    if (schEv.get_title() == "") return true;
-    if (schEv.get_end() <= 0) return true;
-    if (schEv.get_start() <= 0) return true;
+    if (schEv.get_briefEnglish() == "" || schEv.get_briefEnglish() == null) return true;
+    if (schEv.get_briefSpanish() == "" || schEv.get_briefSpanish() == null) return true;
+    if (schEv.get_eventype() == "" || schEv.get_eventype() == null) return true;
+    if (schEv.get_id() == "" || schEv.get_id() == null) return true;
+    if (schEv.get_location() == "" || schEv.get_location() == null) return true;
+    if (schEv.get_title() == "" || schEv.get_title() == null) return true;
+    if (schEv.get_end() <= 0 || schEv.get_end() == null) return true;
+    if (schEv.get_start() <= 0 || schEv.get_start() == null) return true;
   }
 
   set_title(title){
