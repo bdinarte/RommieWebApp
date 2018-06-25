@@ -46,13 +46,34 @@
               </span>
               <div class="col-xs-12" *ngIf="selected_event==_event.key">
                 <div class="row"><hr></div>
-                <div class="row"><strong>ID: </strong>{{ _event.id }}</div>
-                <div class="row"><strong>Tipo de evento: </strong>{{ _event.eventype | titlecase }}</div>
-                <div class="row"><strong>Inicio: </strong>{{ double_to_date(_event.start) }}</div>
-                <div class="row"><strong>Fin: </strong>{{ double_to_date(_event.end) }}</div>
-                <div class="row"><strong>Resumen: </strong>{{ _event.briefSpanish }}</div>
-                <div class="row"><strong>Resumen (Inglés): </strong>{{ _event.briefEnglish }}</div>
-                <div class="row"><strong>Ubicación: </strong>{{ _event.location }}</div>
+                <div class="row">
+                  <div class="col-xs-2"><strong>ID: </strong></div>
+                  <div class="col-xs-9">{{ _event.id }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2"><strong>Tipo de evento: </strong></div>
+                  <div class="col-xs-9">{{ _event.eventype | titlecase }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2"><strong>Inicio: </strong></div>
+                  <div class="col-xs-9">{{ double_to_date(_event.start) }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2"><strong>Fin: </strong></div>
+                  <div class="col-xs-9">{{ double_to_date(_event.end) }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2"><strong>Resumen: </strong></div>
+                  <div class="col-xs-9">{{ _event.briefSpanish }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2"><strong>Resumen (Inglés): </strong></div>
+                  <div class="col-xs-9">{{ _event.briefEnglish }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2"><strong>Ubicación: </strong></div>
+                  <div class="col-xs-9">{{ _event.location }}</div>
+                </div>
               </div>
             </li>
           </ul>
