@@ -8,15 +8,17 @@ export class UploadService {
 
   task: AngularFireUploadTask;
   snapshot: Observable<any>;
+  download_url: Observable<string>;
 
   constructor(private storage: AngularFireStorage) { }
 
   uploadImage(event: FileList): boolean {
 
-    const path = 'edepa_map.png';
+    const filename = 'edepa_map' + (new Date()).toTimeString() + '.png';
+    console.log((new Date()).toTimeString());
 
     try {
-      this.snapshot = this.storage.ref(path).delete();
+      this.snapshot = this.storage.ref(filename).delete();
     }
     catch (e) {
       this.snapshot = null;
@@ -25,7 +27,10 @@ export class UploadService {
     try {
       const file = event.item(0);
 
-      this.task = this.storage.upload(path, file);
+      this.task = this.storage.upload(filename, file);
+      this.download_url = this.task.downloadURL();
+      console.log(this.download_url);
+
       this.snapshot = this.task.snapshotChanges();
 
       return true;
