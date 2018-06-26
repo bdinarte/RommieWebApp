@@ -1,43 +1,40 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage'
-import { Observable } from 'rxjs/Observable'
+import { finalize } from 'rxjs/operators';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class UploadService {
 
   task: AngularFireUploadTask;
-  snapshot: Observable<any>;
-  download_url: Observable<string>;
+  download_url: any;
 
-  constructor(private storage: AngularFireStorage) { }
+  constructor(private storage: AngularFireStorage, private database: AngularFireDatabase) {}
 
   uploadImage(event: FileList): boolean {
 
-    const filename = 'edepa_map' + (new Date()).toTimeString() + '.png';
-    console.log((new Date()).toTimeString());
-
-    try {
-      this.snapshot = this.storage.ref(filename).delete();
-    }
-    catch (e) {
-      this.snapshot = null;
-    }
+    const filename = 'edepa_map.png';
 
     try {
       const file = event.item(0);
 
       this.task = this.storage.upload(filename, file);
-      this.download_url = this.task.downloadURL();
-      console.log(this.download_url);
 
-      this.snapshot = this.task.snapshotChanges();
+      this.task.snapshotChanges().pipe(
+        finalize(() => {
+          let minimap = this.storage.ref(filename).getDownloadURL();
+          minimap.toPromise().then(url => this.database.object('edepa5/config/minimap').set(url))
+        }
+        )
+      ).subscribe();
 
       return true;
     }
     catch(e) {
       return false;
     }
+
   }
 
 }
