@@ -3,11 +3,17 @@
   <!-- Menú lateral -->
   <div id="sidebar" class="col-xs-2">
 
-    <div class="row gradient">
+    <!--<div class="row gradient">
       <div class="col-xs-10 col-centered" style="margin-left: 7%">
       <img src="assets/images/userdefault.png" class="img-responsive img-rounded" style="opacity: 0.8;">
       </div>
       <div class="col-xs-1"></div>
+    </div>-->
+
+    <div class="row">
+      <div class="col-xs-12 col-centered">
+        <img src="assets/images/logo_edepa.svg" class="img-responsive">
+      </div>
     </div>
 
     <div class="row">
@@ -28,7 +34,7 @@
       </div>
     </div>
 
-<!--
+
     <div class="row">
       <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='chat'" (click)="displaying='chat'">
         Chat
@@ -36,16 +42,18 @@
     </div>
 
     <div class="row">
-      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='configuracion'" (click)="displaying='configuracion'">
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='expositores'" (click)="displaying='expositores'">
+        Expositores
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="btn-m btn-menu" [class.btn-menu-activo]="displaying==='settings'" (click)="displaying='settings'">
         Configuración
       </div>
     </div>
--->
-    <div class="row">
-      <div class="col-xs-12 col-centered">
-        <img src="assets/images/logo_edepa.svg" class="img-responsive">
-      </div>
-    </div>
+
+
   </div>
 
   <!-- Contenidos del menú -->
@@ -53,6 +61,7 @@
       <app-info-general *ngIf="displaying=='info-general'"></app-info-general>
       <app-noticias *ngIf="displaying=='noticias'"></app-noticias>
       <app-cronograma *ngIf="displaying=='cronograma'"></app-cronograma>
+      <app-chat *ngIf="displaying=='chat'"></app-chat>
   </div>
 </div>
 
