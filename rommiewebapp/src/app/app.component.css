@@ -36,7 +36,8 @@ img {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 );
 }
 .btn-menu.focus, .btn-menu:focus, .btn-menu:hover {
-  background: #E51937;
+  /*background: #E51937;*/
+  background: #D95750;
   color: #FFFFFF;
   text-decoration: none
 }
@@ -48,7 +49,8 @@ img {
 }
 .btn-menu-activo {
   color: #FFFFFF;
-  background: #E51937 !important;
+  /*background: #E51937 !important;*/
+  background: #D95750 !important;
 }
 .btn-menu-activo.focus, .btn-menu-activo:focus, .btn-menu-activo:hover {
   color: #212121;

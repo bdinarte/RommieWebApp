@@ -23,7 +23,8 @@ label {
 
 .btn-std {
   width: 150px;
-  background: #E51937;
+  background: #EB6159;
+  /*background: #E51937;*/
   color: #FFFFFF;
   overflow-x: hidden;
 }
@@ -31,7 +32,8 @@ label {
   color: #212121;
 }
 .btn-menu.active, .btn-menu:active {
-  background: #A01126;
+  /*background: #A01126;*/
+  background: #D95750;
 }
 
 textarea{
@@ -41,7 +43,8 @@ textarea{
 }
 
 .badge-extra {
-  background: hsla(351, 80%, 50%, 0.7);
+  /*background: hsla(351, 80%, 50%, 0.7);*/
+  background: hsla(2, 80%, 52%, 0.7);
 }
 .badge-extra:hover {
   border-color: #3978e9;
