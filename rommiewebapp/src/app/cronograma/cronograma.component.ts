@@ -82,6 +82,7 @@ export class CronogramaComponent implements OnInit {
       this.filtered_events = this.filtered_events.map(events => events.filter(
         evnt => (evnt.title.toLowerCase()).includes(this.filter_string.toLowerCase())
                           || (evnt.eventype.toLowerCase()).includes(this.filter_string.toLowerCase())
+                          || (evnt.id.toLowerCase()).includes(this.filter_string.toLowerCase())
                           ));
     }
   }
