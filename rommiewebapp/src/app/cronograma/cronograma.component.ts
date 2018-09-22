@@ -29,6 +29,7 @@ export class CronogramaComponent implements OnInit {
   new_or_edit = 'new';
 
   selected_event: string;
+  displaying_event: string;
 
   ngOnInit() {
     this.get_event_list();
@@ -37,11 +38,12 @@ export class CronogramaComponent implements OnInit {
   }
 
   event_selection(event_key: string){
-    if (this.selected_event == event_key){
-      this.selected_event = "-1";
+    this.selected_event = event_key;
+    if (this.displaying_event == event_key){
+      this.displaying_event = "-1";
     }
     else {
-      this.selected_event = event_key;
+      this.displaying_event = event_key;
     }
   }
 

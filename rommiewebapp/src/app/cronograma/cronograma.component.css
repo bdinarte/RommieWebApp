@@ -25,3 +25,7 @@
   overflow-x: hidden;
   float: left;
 }
+
+strong {
+  color: #D95750;
+}

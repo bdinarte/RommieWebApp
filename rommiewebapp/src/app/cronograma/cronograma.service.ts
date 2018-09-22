@@ -9,7 +9,7 @@ import { ScheduleEvent } from "./ScheduleEvent";
 export class CronogramaService {
 
   eventsRef: AngularFireList<any>;
-  private event_list: Observable<any[]>;
+  public event_list: Observable<any[]>;
 
   constructor(db: AngularFireDatabase) {
     this.eventsRef = db.list('edepa5/schedule');
@@ -32,6 +32,7 @@ export class CronogramaService {
       return true;
     }
     catch(e) {
+      console.log(e.toString());
       return false;
     }
   }
@@ -42,6 +43,7 @@ export class CronogramaService {
       return true;
     }
     catch(e) {
+      console.log(e.toString());
       return false;
     }
   }
@@ -53,6 +55,7 @@ export class CronogramaService {
       return true;
     }
     catch(e) {
+      console.log(e.toString());
       return false;
     }
   }
