@@ -1,0 +1,13 @@
+
+.navbar-fixed-top {
+  margin-left:18%;
+  margin-top:2%;
+  box-shadow: 2px 0px 12px #aaaaaa;
+  border-radius: 1em;
+}
+
+.fuck {
+  width: 100%;
+  background-color: #fcfcfc;
+  z-index: 0;
+}
