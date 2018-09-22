@@ -30,6 +30,7 @@ export class ScheduleEvent {
 
   briefEnglish: string;
   briefSpanish: string;
+  fileUrl: string;
   eventype: string;
   id: string;
   location: string;
@@ -41,6 +42,7 @@ export class ScheduleEvent {
   constructor(){
     this.briefEnglish = '';
     this.briefSpanish = '';
+    this.fileUrl = '';
     this.eventype = '';
     this.id = '';
     this.location = '';
@@ -77,6 +79,14 @@ export class ScheduleEvent {
 
   set_briefSpanish(value: string) {
     this.briefSpanish = value;
+  }
+
+  get_fileUrl(): string {
+    return this.fileUrl;
+  }
+
+  set_fileUrl(value: string) {
+    this.fileUrl = value;
   }
 
   get_eventype(): string {
