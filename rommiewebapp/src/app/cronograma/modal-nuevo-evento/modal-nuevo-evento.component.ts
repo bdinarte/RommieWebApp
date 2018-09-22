@@ -23,16 +23,28 @@ export class ModalNuevoEventoComponent implements OnInit {
     this.set_eventype(schedule_object.eventype);
     this.set_briefEnglish(schedule_object.briefEnglish);
     this.set_briefSpanish(schedule_object.briefSpanish);
+    this.set_fileUrl(schedule_object.fileUrl);
     this.set_end(schedule_object.end);
     this.set_start(schedule_object.start);
     this.set_id(schedule_object.id);
     this.set_location(schedule_object.location);
+
   }
 
   display_alert = false;
 
+  check_optional_fields(){
+    if (this.scheduleEvent.get_briefEnglish() == "" || this.scheduleEvent.get_briefEnglish() == null)
+      this.scheduleEvent.set_briefEnglish(null);
+    if (this.scheduleEvent.get_briefSpanish() == "" || this.scheduleEvent.get_briefSpanish() == null)
+      this.scheduleEvent.set_briefSpanish(null);
+    if (this.scheduleEvent.get_fileUrl() == "" || this.scheduleEvent.get_fileUrl() == null)
+      this.scheduleEvent.set_fileUrl(null);
+  }
+
   save_event(){
     if (!this.invalid_fields()){
+      this.check_optional_fields();
       this.display_alert = false;
       this.notify.emit(this.scheduleEvent);
       this.close_modal();
@@ -43,8 +55,6 @@ export class ModalNuevoEventoComponent implements OnInit {
 
   invalid_fields(){
     let schEv = this.scheduleEvent;
-    if (schEv.get_briefEnglish() == "" || schEv.get_briefEnglish() == null) return true;
-    if (schEv.get_briefSpanish() == "" || schEv.get_briefSpanish() == null) return true;
     if (schEv.get_eventype() == "" || schEv.get_eventype() == null) return true;
     if (schEv.get_id() == "" || schEv.get_id() == null) return true;
     if (schEv.get_location() == "" || schEv.get_location() == null) return true;
@@ -63,6 +73,10 @@ export class ModalNuevoEventoComponent implements OnInit {
 
   set_briefEnglish(brief){
     this.scheduleEvent.set_briefEnglish(brief);
+  }
+
+  set_fileUrl(url){
+    this.scheduleEvent.set_fileUrl(url);
   }
 
   set_briefSpanish(brief){
