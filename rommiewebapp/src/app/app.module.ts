@@ -15,6 +15,7 @@ import { ModalAvisoComponent } from './modal-aviso/modal-aviso.component';
 import { ModalNuevoEventoComponent } from './cronograma/modal-nuevo-evento/modal-nuevo-evento.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
+import { ExpositoresComponent } from './expositores/expositores.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmac
     ModalAvisoComponent,
     ModalNuevoEventoComponent,
     NoticiasComponent,
-    ModalConfirmacionComponent
+    ModalConfirmacionComponent,
+    ExpositoresComponent
   ],
   imports: [
     BrowserModule,
