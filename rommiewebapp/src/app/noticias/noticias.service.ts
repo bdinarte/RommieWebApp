@@ -32,6 +32,7 @@ export class NoticiasService {
       return true;
     }
     catch(e) {
+      console.log(e.toString());
       return false;
     }
   }
@@ -42,6 +43,7 @@ export class NoticiasService {
       return true;
     }
     catch(e) {
+      console.log(e.toString());
       return false;
     }
   }

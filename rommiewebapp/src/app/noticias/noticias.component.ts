@@ -24,6 +24,7 @@ export class NoticiasComponent implements OnInit {
   ngOnInit() {
     this.get_news_list();
     this.new_article_content = "";
+    this.new_article_title = "";
   }
 
   get_news_list(): void {
@@ -68,12 +69,21 @@ export class NoticiasComponent implements OnInit {
   }
 
   new_article_content: string;
+  new_article_title: string;
 
   add_new_article(){
-    let new_article = new NewsArticle(this.new_article_content);
+    if (this.new_article_content == "" || this.new_article_content == null) {
+      this.new_article_content = null;
+    }
+    if (this.new_article_title == "" || this.new_article_title == null) {
+      this.new_article_title = null;
+    }
+    let new_article = new NewsArticle(this.new_article_content, this.new_article_title);
     let save_success = this.noticiasService.save_new_article(new_article);
     if (save_success) {
       this.show_modal_info('Noticia publicada.')
+      this.new_article_title = "";
+      this.new_article_content = "";
     }
     else {
       this.show_modal_info('Error al publicar la noticia.')
