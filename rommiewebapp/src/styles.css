@@ -39,7 +39,6 @@ label {
 textarea{
   overflow-y: auto;
   overflow-x: hidden;
-  resize: none;
 }
 
 .badge-extra {

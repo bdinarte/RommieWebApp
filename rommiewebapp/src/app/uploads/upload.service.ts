@@ -32,6 +32,7 @@ export class UploadService {
       return true;
     }
     catch(e) {
+      console.log(e.toString());
       return false;
     }
 
