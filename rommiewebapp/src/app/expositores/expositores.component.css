@@ -1,0 +1,26 @@
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.list-group-extra {
+  margin-top: 15px;
+  width: 88%;
+}
+
+.list-group-item-extra {
+  overflow-x: auto;
+}
+
+.list-group-item-extra:nth-of-type(odd) {
+  overflow-x: auto;
+  background: hsla(0, 0%, 96%, 0.99);
+}
+
+.list-item-title{
+  width: 80%;
+  overflow-x: hidden;
+  float: left;
+}
