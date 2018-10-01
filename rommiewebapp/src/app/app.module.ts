@@ -16,6 +16,7 @@ import { ModalNuevoEventoComponent } from './cronograma/modal-nuevo-evento/modal
 import { NoticiasComponent } from './noticias/noticias.component';
 import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
 import { ExpositoresComponent } from './expositores/expositores.component';
+import { ExpositoresService } from './expositores/expositores.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ExpositoresComponent } from './expositores/expositores.component';
     AngularFireDatabaseModule,
     AngularFireStorageModule
   ],
-  providers: [],
+  providers: [ExpositoresService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
