@@ -4,8 +4,6 @@ export class NewsArticle {
   content: string;
   title: string;
   time: number;
-  userid: string;
-  username: string;
 
   constructor(content, title) {
     this.content = content;

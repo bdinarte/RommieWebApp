@@ -1,31 +1,4 @@
 
-export class Exhibitor {
-
-  completeName: string;
-  personalTitle: string;
-
-  constructor (name, title){
-    this.completeName = name;
-    this.personalTitle = title;
-  }
-
-  get_personalTitle(): string {
-    return this.personalTitle;
-  }
-
-  set_personalTitle(value: string) {
-    this.personalTitle = value;
-  }
-
-  get_completeName(): string {
-    return this.completeName;
-  }
-
-  set_completeName(value: string) {
-    this.completeName = value;
-  }
-}
-
 export class ScheduleEvent {
 
   briefEnglish: string;
@@ -37,7 +10,6 @@ export class ScheduleEvent {
   title: string;
   start: number;
   end: number;
-  exhibitors: Exhibitor[];
 
   constructor(){
     this.briefEnglish = '';
@@ -50,19 +22,6 @@ export class ScheduleEvent {
     let _date: any = new Date();
     this.start = _date*1;
     this.end = _date*1;
-    let temp_exhibitor = new Exhibitor('Sin expositor asignado.', 'Sin expositor asignado.');
-    this.exhibitors = [temp_exhibitor];
-  }
-
-  add_exhibitor(name, title) {
-    this.exhibitors.push( new Exhibitor(name, title) );
-  }
-
-  del_exhibitor(name) {
-    var index = this.exhibitors.findIndex(x => x.get_completeName()==name);
-    if (index > -1) {
-      this.exhibitors.splice(index, 1);
-    }
   }
 
   get_briefEnglish(): string {
