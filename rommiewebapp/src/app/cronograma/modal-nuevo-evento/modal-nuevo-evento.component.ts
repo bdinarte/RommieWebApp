@@ -33,6 +33,10 @@ export class ModalNuevoEventoComponent implements OnInit {
 
   display_alert = false;
 
+  hide_display_alert() {
+    this.display_alert = false;
+  }
+
   check_optional_fields(){
     if (this.scheduleEvent.get_briefEnglish() == "" || this.scheduleEvent.get_briefEnglish() == null)
       this.scheduleEvent.set_briefEnglish(null);

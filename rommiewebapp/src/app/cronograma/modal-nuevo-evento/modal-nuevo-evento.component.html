@@ -1,61 +1,65 @@
 
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
 
-<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
-  <div class="modal-dialog" role="document">
+<div class="modal" tabindex="-1" style="margin-left: 7%; margin-top: 1%" role="dialog" [ngStyle]="{'display':display}">
+  <!--<div class="modal-dialog" role="document">-->
 
-    <div class="modal-content" >
+    <div class="modal-content" style="width: 90%;">
       <div class="modal-header">
         <button type="button" class="close" (click)="close_modal()">&times;</button>
         <h4 class="modal-title">Datos del evento:</h4>
+        <div *ngIf="display_alert" class="alert alert-danger">
+          <strong>¡Importante!</strong> Debe completarse toda la información con datos válidos.
+          <button type="button" class="close" (click)="hide_display_alert()">&times;</button>
+        </div>
       </div>
-      <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+      <div class="modal-body" style="max-height: 500px; overflow-y: auto; overflow-x: auto;">
         <form class="form-horizontal">
           <div class="form-group">
-            <label class="control-label col-xs-4" for="title">Título:</label>
-            <div class="col-xs-8">
+            <label class="control-label col-xs-2" for="title">Título:</label>
+            <div class="col-xs-10">
               <textarea type="text" class="form-control" id="title" placeholder="Escribir título del evento" name="title"
                         [ngModel]="scheduleEvent.title" (ngModelChange)="set_title($event)"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-4" for="_id">Identificador:</label>
-            <div class="col-xs-8">
+            <label class="control-label col-xs-2" for="_id">Identificador:</label>
+            <div class="col-xs-10">
               <input type="text" class="form-control" id="_id" placeholder="Escribir código identificador" name="_id"
                      [ngModel]="scheduleEvent.id" (ngModelChange)="set_id($event)">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-4" for="briefenglish">Resumen (Inglés):</label>
-            <div class="col-xs-8">
-              <textarea type="text" class="form-control" id="briefenglish" placeholder="Escribir resumen en inglés" name="briefenglish"
+            <label class="control-label col-xs-2" for="briefenglish">Resumen (Inglés):</label>
+            <div class="col-xs-10">
+              <textarea type="text" class="form-control" id="briefenglish" placeholder="Escribir resumen en inglés (opcional)" name="briefenglish"
                         [ngModel]="scheduleEvent.briefEnglish" (ngModelChange)="set_briefEnglish($event)"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-4" for="briefspanish">Resumen (Español):</label>
-            <div class="col-xs-8">
-              <textarea type="text" class="form-control" id="briefspanish" placeholder="Escribir resumen en español" name="briefspanish"
+            <label class="control-label col-xs-2" for="briefspanish">Resumen (Español):</label>
+            <div class="col-xs-10">
+              <textarea type="text" class="form-control" id="briefspanish" placeholder="Escribir resumen en español (opcional)" name="briefspanish"
                         [ngModel]="scheduleEvent.briefSpanish" (ngModelChange)="set_briefSpanish($event)"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-4" for="fileurl">Enlace relacionado:</label>
-            <div class="col-xs-8">
-              <textarea type="text" class="form-control" id="fileurl" placeholder="Escribir la URL del archivo relacionado a este evento" name="fileurl"
+            <label class="control-label col-xs-2" for="fileurl">Enlace relacionado:</label>
+            <div class="col-xs-10">
+              <textarea type="text" class="form-control" id="fileurl" placeholder="Escribir la URL del archivo relacionado a este evento (opcional)" name="fileurl"
                         [ngModel]="scheduleEvent.fileUrl" (ngModelChange)="set_fileUrl($event)"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-4" for="location">Ubicación:</label>
-            <div class="col-xs-8">
+            <label class="control-label col-xs-2" for="location">Ubicación:</label>
+            <div class="col-xs-10">
               <input type="text" class="form-control" id="location" placeholder="Escribir ubicación del evento" name="location"
                      [ngModel]="scheduleEvent.location" (ngModelChange)="set_location($event)">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-4" for="location">Tipo de evento:</label>
-            <div class="col-xs-8">
+            <label class="control-label col-xs-2" for="location">Tipo de evento:</label>
+            <div class="col-xs-10">
               <div class="dropdown">
                 <button class="btn btn-danger btn-std dropdown-toggle" type="button"
                         data-toggle="dropdown"> {{ scheduleEvent.eventype | titlecase }}
@@ -71,23 +75,20 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-4" for="location">Inicio del evento:</label>
-            <div class="col-xs-8">
+            <label class="control-label col-xs-2" for="start">Inicio del evento:</label>
+            <div class="col-xs-4">
               <input type="datetime-local" id="start" name="start" class="form-control"
                      [ngModel]="double_to_date(scheduleEvent.start) | date:'yyyy-MM-ddTHH:mm'"
                      (ngModelChange)="set_start($event)" >
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-4" for="location">Final del evento:</label>
-            <div class="col-xs-8">
+            <label class="control-label col-xs-2" for="end">Final del evento:</label>
+            <div class="col-xs-4">
               <input type="datetime-local" id="end" name="end" class="form-control"
                      [ngModel]="double_to_date(scheduleEvent.end) | date:'yyyy-MM-ddTHH:mm'"
                      (ngModelChange)="set_end($event)" >
             </div>
-          </div>
-          <div *ngIf="display_alert" class="alert alert-danger">
-            <strong>¡Importante!</strong> Debe completarse toda la información con datos válidos.
           </div>
         </form>
       </div>
@@ -97,5 +98,6 @@
       </div>
     </div>
 
-  </div>
+  <!--</div>-->
 </div>
+
