@@ -7,14 +7,17 @@ import { Observable } from 'rxjs/Observable';
 export class InfoGeneralService {
 
   private info_display: Observable<any>;
+  private minimap: Observable<any>;
   private database: any;
 
   constructor(db: AngularFireDatabase) {
     this.info_display = db.object('edepa5/congress').valueChanges();
+    this.minimap = db.object('edepa5/config/minimap').valueChanges();
     this.database = db;
   }
 
   get_info_display(): Observable<any> { return this.info_display; }
+  get_minimap(): Observable<any> { return this.minimap; }
 
   set_name(name: string){
     this.database.object('edepa5/congress/name').set(name);

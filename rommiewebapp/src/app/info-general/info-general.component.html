@@ -52,9 +52,9 @@
                (ngModelChange)="update_location($event)"
                placeholder="Escribir una localización textual para el congreso"/>
       </div>
-      <div class="row">
+      <div class="row" style="margin-top: 10px;">
         <div class="col-xs-6">
-          <!-- colocar map -->
+          <img class="minimap-image" [src]="minimap | async"/>
         </div>
         <div class="col-xs-6">
           <div class="row"><h2>Coordenadas</h2></div>
@@ -81,7 +81,8 @@
             </div>
           </div>
           <div class="row"> <div class="col-xs-10"> <hr> </div> </div>
-          <div class="row"><h2>Cargar imagen de mapa</h2></div>
+          <div class="row"><h2>Mapa - Cargar Imagen</h2></div>
+          <div class="row" style="margin-top: 3px;"><strong>Seleccionada:</strong> {{current_file_name }} </div>
           <div class="row">
             <div class="col-xs-4 vcenter">
               <label class="btn btn-danger btn-std">

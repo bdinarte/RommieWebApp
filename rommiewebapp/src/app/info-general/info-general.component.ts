@@ -15,6 +15,8 @@ import { ModalAvisoComponent } from "../modal-aviso/modal-aviso.component"
 export class InfoGeneralComponent implements OnInit {
 
   info_display: Observable<any>;
+  minimap: Observable<any>;
+
   selectedFiles: FileList;
   @ViewChild(ModalAvisoComponent) modal: ModalAvisoComponent;
 
@@ -24,12 +26,16 @@ export class InfoGeneralComponent implements OnInit {
 
   get_info_display(): void {
     this.info_display = this.infoService.get_info_display();
+    this.minimap = this.infoService.get_minimap();
   }
+
+  current_file_name: string = "No se ha seleccionado.";
 
   fileChange(event){
     if (event.target.files.length > 0) {
       this.selectedFiles = event.target.files;
-      this.show_modal('Archivo seleccionado: ' + this.selectedFiles.item(0).name);
+      this.current_file_name = this.selectedFiles.item(0).name;
+      this.show_modal('Archivo seleccionado: ' + this.current_file_name);
     }
   }
 
