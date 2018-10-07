@@ -3,7 +3,7 @@
 
   <app-modal-aviso></app-modal-aviso>
   <app-modal-nuevo-evento (notify)="onNotify($event)"></app-modal-nuevo-evento>
-  <app-modal-confirmacion (notify)="process_confirmation($event)"></app-modal-confirmacion>
+  <app-modal-confirmacion (notify)="elimination_confirmation($event)"></app-modal-confirmacion>
 
   <div class="row">
     <div class="col-xs-12">
@@ -14,7 +14,7 @@
           <div class="row">
             <input [(ngModel)]="filter_string"
                    (keyup.enter)="filter_events()"
-                   class="_input form-control"/>
+                   class="_input form-control" placeholder="Busque por título, ID o tipo de evento"/>
           </div>
         </div>
         <div class="col-xs-2">
@@ -36,19 +36,61 @@
         <div class="col-xs-12">
           <ul class="list-group list-group-extra">
             <li class="list-group-item list-group-item-extra" *ngFor="let _event of filtered_events | async"
-                (click)="event_selection(_event.key)">
+                (click)="event_selection(_event.key, _event.people)">
               <div class="list-item-title" > {{ _event.title }} </div>
               <span class="badge badge-extra" (click)="show_elimination_modal(_event.key)">
-                <a style="color:white;" href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                <a style="color:white;"><span class="glyphicon glyphicon-trash"></span></a>
               </span>
               <span class="badge badge-extra" (click)="show_edit_modal(_event)">
-                <a style="color:white;" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a style="color:white;"><span class="glyphicon glyphicon-pencil"></span></a>
+              </span>
+              <span class="badge badge-extra" (click)="toggle_exhibitors(_event)">
+                <a style="color:white;"><span class="glyphicon glyphicon-user"></span></a>
+              </span>
+              <span class="badge badge-extra" (click)="set_displaying_event(_event)">
+                <a style="color:white;"><span class="glyphicon glyphicon-eye-open"></span></a>
               </span>
               <div class="col-xs-12" *ngIf="displaying_event==_event.key">
                 <div class="row"><hr></div>
                 <div class="row">
                   <div class="col-xs-2"><strong>ID: </strong></div>
                   <div class="col-xs-9">{{ _event.id }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2"><strong>Expositores: </strong></div>
+                  <div class="col-xs-9">
+                    <ul>
+                      <li *ngFor="let exhibitor of filtered_exhibitors | async">
+                        <span class="glow-on-hover" (click)="show_exhibitor_elimination_modal(_event.key, exhibitor.key)">
+                          <a style="color:#D95750;"><span class="glyphicon glyphicon-trash"></span></a>
+                        </span>
+                        {{ exhibitor.completeName }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row" *ngIf="display_new_exhibitor" style="margin-top: 10px; margin-bottom: 10px">
+                  <div class="col-xs-2"><strong>Nuevo: </strong></div>
+                  <div class="col-xs-6">
+                    <div class="dropdown">
+                    <button class="_input btn btn-default dropdown-toggle" type="button"
+                            data-toggle="dropdown"> {{ selected_exhibitor_name }}
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu exhibitors-dropdown">
+                      <li *ngFor="let exhibitor of exhibitors_list | async"
+                          (click)="select_new_exhib(exhibitor)"><a> {{ exhibitor.completeName }} </a></li>
+                    </ul>
+                  </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="row">
+                      <button class="btn btn-danger btn-std" (click)="add_relation(_event.key)">Agregar</button>
+                    </div>
+                    <div class="row" style="margin-top: 8px">
+                      <button class="btn btn-default" style="width: 150px;" (click)="cancel_new_exhibitor()">Cancelar</button>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-xs-2"><strong>Tipo de evento: </strong></div>

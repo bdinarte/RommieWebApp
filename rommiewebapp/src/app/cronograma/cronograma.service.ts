@@ -48,10 +48,21 @@ export class CronogramaService {
     }
   }
 
+  add_relation(event_key, exhibitor_key){
+    try{
+      this.database.object('edepa5/schedule/' + event_key + '/people/' + exhibitor_key).set(true);
+      this.database.object('edepa5/people/' + exhibitor_key + '/events/' + event_key).set(true);
+      return true;
+    }
+    catch(e) {
+      console.log(e.toString());
+      return false;
+    }
+  }
+
   save_new_event(new_event: ScheduleEvent) : boolean {
     try {
       this.database.list('edepa5/schedule').push(new_event);
-      this.database.list('edepa5/ongoing').push(new_event);
       return true;
     }
     catch(e) {
