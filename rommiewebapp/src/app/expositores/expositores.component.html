@@ -2,7 +2,7 @@
 <div class="container">
 
   <app-modal-aviso></app-modal-aviso>
-  <app-modal-confirmacion (notify)="elimination_confirmation($exhibitor)"></app-modal-confirmacion>
+  <app-modal-confirmacion (notify)="elimination_confirmation($event)"></app-modal-confirmacion>
 
   <div class="row">
     <div class="col-xs-12">
@@ -39,12 +39,40 @@
         <div class="col-xs-12">
           <ul class="list-group list-group-extra">
             <li class="list-group-item list-group-item-extra" *ngFor="let exhibitor of exhibitors_list | async">
-              <span class="badge badge-extra" (click)="show_elimination_modal(exhibitor.key)">
-                <a style="color:white;" href="#"><span class="glyphicon glyphicon-trash"></span></a>
+              <span class="badge badge-extra" (click)="show_elimination_modal(exhibitor)">
+                <a style="color:white;"><span class="glyphicon glyphicon-trash"></span></a>
               </span>
-              <div><strong>Nombre: </strong>{{ exhibitor.completeName }}</div>
-              <div><strong>País: </strong>{{ exhibitor.personalTitle }}</div>
+              <span class="badge badge-extra" (click)="change_editing(exhibitor)">
+                <a style="color:white;"><span class="glyphicon glyphicon-pencil"></span></a>
+              </span>
+              <div><strong>Nombre: </strong> {{ exhibitor.completeName }} </div>
+              <div><strong>País: </strong> {{ exhibitor.personalTitle }} </div>
               <div><strong>Info: </strong> {{ exhibitor.about }} </div>
+              <div><strong>Cantidad de eventos: </strong> {{ count_len(exhibitor.events) }} </div>
+              <div *ngIf="editing_key==exhibitor.key" class="alert alert-dark">
+                <div class="col-xs-9">
+                  <div class="row">
+                    <input class="_input form-control" [(ngModel)]="edited_exhibitor_name"
+                           placeholder="Nombre completo del expositor"/>
+                  </div>
+                  <div class="row" style="margin-top: 10px;">
+                    <input class="_input form-control" [(ngModel)]="edited_exhibitor_country"
+                           placeholder="País del expositor (opcional)"/>
+                  </div>
+                  <div class="row" style="margin-top: 10px;">
+                    <input class="_input form-control" [(ngModel)]="edited_exhibitor_about"
+                           placeholder="Información del expositor (opcional)"/>
+                  </div>
+                </div>
+                <div class="col-xs-3">
+                  <div class="row">
+                    <button class="btn btn-danger btn-std" (click)="edit_exhibitor(exhibitor.key)">Guardar</button>
+                  </div>
+                  <div class="row" style="margin-top: 8px">
+                    <button class="btn btn-default" style="width: 150px;" (click)="editing_key=null">Cancelar</button>
+                  </div>
+                </div>
+              </div>
             </li>
           </ul>
         </div>

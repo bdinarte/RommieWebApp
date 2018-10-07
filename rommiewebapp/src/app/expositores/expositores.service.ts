@@ -37,6 +37,17 @@ export class ExpositoresService {
     }
   }
 
+  edit_exhibitor(_key, updated_object){
+    try {
+      this.database.list('edepa5/people/').update(_key, updated_object);
+      return true;
+    }
+    catch(e) {
+      console.log(e.toString());
+      return false;
+    }
+  }
+
   save_exhibitor(new_exhibitor: Exhibitor) : boolean {
     try {
       this.database.list('edepa5/people').push(new_exhibitor);
@@ -45,6 +56,36 @@ export class ExpositoresService {
     catch(e) {
       console.log(e.toString());
       return false;
+    }
+  }
+
+  delete_relation(event, exhibitor) {
+    try {
+      this.delete_exhibitor_from_event(event, exhibitor);
+      this.delete_event_from_exhibitor(event, exhibitor);
+      return true;
+    }
+    catch(e) {
+      console.log(e.toString());
+      return false;
+    }
+  }
+
+  delete_exhibitor_from_event(event, exhibitor) {
+    try {
+      this.database.list('edepa5/schedule/' + event + '/people/' + exhibitor).remove();
+    }
+    catch (e) {
+      throw e;
+    }
+  }
+
+  delete_event_from_exhibitor(event, exhibitor) {
+    try {
+      this.database.list('edepa5/people/' + exhibitor + '/events/' + event).remove();
+    }
+    catch (e) {
+      throw e;
     }
   }
 
